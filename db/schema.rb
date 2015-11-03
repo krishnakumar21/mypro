@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103113309) do
+ActiveRecord::Schema.define(version: 20151103113452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(version: 20151103113309) do
     t.string   "comment_pics_content_type"
     t.integer  "comment_pics_file_size"
     t.datetime "comment_pics_updated_at"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade do |t|
