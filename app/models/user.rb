@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   # Autocode: Relationships
+  has_many :posts
 
   # Autocode: Validations
 
