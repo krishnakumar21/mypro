@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
 
   # Autocode: Relationships
+  has_many :likes
 
   # Autocode: Validations
 
