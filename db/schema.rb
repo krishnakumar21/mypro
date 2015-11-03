@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103123930) do
+ActiveRecord::Schema.define(version: 20151103124640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 20151103123930) do
     t.string   "category_pic_content_type"
     t.integer  "category_pic_file_size"
     t.datetime "category_pic_updated_at"
+    t.string   "type"
+    t.string   "cover_pic_file_name"
+    t.string   "cover_pic_content_type"
+    t.integer  "cover_pic_file_size"
+    t.datetime "cover_pic_updated_at"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -61,9 +66,12 @@ ActiveRecord::Schema.define(version: 20151103123930) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
+
+  add_index "likes", ["category_id"], name: "index_likes_on_category_id", using: :btree
 
   create_table "patients", force: :cascade do |t|
     t.datetime "created_at",           null: false
@@ -99,5 +107,6 @@ ActiveRecord::Schema.define(version: 20151103123930) do
     t.datetime "pic_updated_at"
   end
 
+  add_foreign_key "likes", "categories"
   add_foreign_key "posts", "users"
 end
